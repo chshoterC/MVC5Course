@@ -17,8 +17,7 @@ namespace MVC5Course.Controllers
         // GET: Products
         public ActionResult Index(bool? Active = true)
         {
-            var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active)
-                
+            var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active)                
                 .OrderByDescending(p => p.ProductId).Take(10);
             return View(data);
         }

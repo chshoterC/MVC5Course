@@ -23,12 +23,16 @@ namespace MVC5Course.Models
     
         public int ProductId { get; set; }
         [Required(ErrorMessage ="insert pd name")]
+        [MinLength(1), MaxLength(30)]
+        [RegularExpression("(.+)-(.+)", ErrorMessage ="pdname type error")]
         public string ProductName { get; set; }
         [Required]
+        [Range(0,9999,ErrorMessage ="please insert 0~9999")]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
         [Required]
+        [Range(0, 500, ErrorMessage = "please insert 0~500")]
         public Nullable<decimal> Stock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

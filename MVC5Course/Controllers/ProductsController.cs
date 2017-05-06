@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
@@ -17,8 +18,22 @@ namespace MVC5Course.Controllers
         // GET: Products
         public ActionResult Index(bool? Active = true)
         {
-            var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active)                
+            var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active)
                 .OrderByDescending(p => p.ProductId).Take(10);
+            return View(data);
+        }
+
+        public ActionResult ListProducts()
+        {
+            var data = db.Product.Where(p => p.Active.Value == true)
+               .Select(p => new ListProducts
+               {
+                   Price = p.Price,
+                   ProductName = p.ProductName,
+                   Stock = p.Stock,
+                   ProductId = p.ProductId
+
+               }).Take(50).OrderBy(p=>p.Stock);
             return View(data);
         }
 
@@ -57,7 +72,15 @@ namespace MVC5Course.Controllers
                 return RedirectToAction("Index");
             }
 
+            //弱型別
+
+
             return View(product);
+        }
+
+        public class IEnumerableProduct
+        {
+            //Product product = db.Product.Find(id);
         }
 
         // GET: Products/Edit/5

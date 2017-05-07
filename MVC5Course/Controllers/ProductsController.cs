@@ -33,7 +33,7 @@ namespace MVC5Course.Controllers
                    Stock = p.Stock,
                    ProductId = p.ProductId
 
-               }).Take(50).OrderBy(p=>p.Stock);
+               }).Take(50).OrderByDescending(p=>p.ProductId);
             return View(data);
         }
 
@@ -147,6 +147,25 @@ namespace MVC5Course.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult CreateProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct(ListProducts datas)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO: 儲存資料進資料庫
+
+                return RedirectToAction("ListProducts");
+            }
+            // 驗證失敗，繼續顯示原本的表單
+            return View();
         }
     }
 }

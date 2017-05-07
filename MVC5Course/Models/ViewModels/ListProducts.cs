@@ -8,14 +8,14 @@ namespace MVC5Course.Models.ViewModels
 {
 	public class ListProducts
 	{
-        [Required]
         public int ProductId { get; set; }
-
-        [StringLength(80, ErrorMessage = "欄位長度不得大於 80 個字元")]
+        [Required]
+        [MinLength(5)]
         public string ProductName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0}")]
+        [Required]
         public Nullable<decimal> Price { get; set; }
+        [Required]
         public Nullable<decimal> Stock { get; set; }
-		
+
     }
 }

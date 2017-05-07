@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using System.Data.Entity.Validation
+
+
 namespace MVC5Course.Controllers
 {
     public class EFController : Controller
@@ -12,18 +15,18 @@ namespace MVC5Course.Controllers
 
 
         public ActionResult Index()
-         {
-             var all = db.Product.AsQueryable();
- 
-             var data = all
-                 .Where(p => p.ProductName.Contains("Black"))
-                 .OrderByDescending(p => p.ProductId)
-                 .Take(300);
- 
-             return View(data);
-         }
+        {
+            var all = db.Product.AsQueryable();
 
-    public ActionResult CreateProduct()
+            var data = all
+                .Where(p => p.isDel == false && p.ProductName.Contains("Black"))
+                .OrderByDescending(p => p.ProductId)
+                .Take(300);
+
+            return View(data);
+        }
+
+        public ActionResult CreateProduct()
         {
             return View();
         }
@@ -51,7 +54,7 @@ namespace MVC5Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Product product)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var data = db.Product.Find(id);
                 data.ProductName = product.ProductName;
@@ -75,13 +78,18 @@ namespace MVC5Course.Controllers
             //    db.OrderLine.Remove(item);
             //}
 
-            db.OrderLine.RemoveRange(pd.OrderLine);
+            //db.OrderLine.RemoveRange(pd.OrderLine);
 
-            db.Product.Remove(pd);
+            pd.isDel = true;
 
-
-
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
             return RedirectToAction("Index");
         }
 

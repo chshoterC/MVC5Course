@@ -216,6 +216,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Fabrics.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Fabrics1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Fabrics.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Occupation.cs">
@@ -282,7 +287,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <EntityDeploy Include="Models\Fabrics.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Fabrics.Designer.cs</LastGenOutput>
+      <LastGenOutput>Fabrics1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Fabrics.edmx.diagram">
       <DependentUpon>Fabrics.edmx</DependentUpon>

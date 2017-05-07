@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
-using System.Data.Entity.Validation
+using System.Data.Entity.Validation;
 
 
 namespace MVC5Course.Controllers

@@ -11,9 +11,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,21 +21,9 @@ namespace MVC5Course.Models
         }
     
         public int ProductId { get; set; }
-        [Required(ErrorMessage ="insert pd name")]
-        [MinLength(1), MaxLength(30)]
-        [RegularExpression("(.+)-(.+)", ErrorMessage ="pdname type error")]
-        [DisplayName("商品名稱")]
         public string ProductName { get; set; }
-        [Required]
-        [Range(0,9999,ErrorMessage ="please insert 0~9999")]
-        [DisplayName("價格")]
         public Nullable<decimal> Price { get; set; }
-        [Required]
-        [DisplayName("上架")]
         public Nullable<bool> Active { get; set; }
-        [Required]
-        [DisplayName("庫存")]
-        [Range(0, 500, ErrorMessage = "please insert 0~500")]
         public Nullable<decimal> Stock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

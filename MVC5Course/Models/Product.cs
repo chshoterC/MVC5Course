@@ -11,7 +11,9 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using ValidationAttributes;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +23,8 @@ namespace MVC5Course.Models
         }
     
         public int ProductId { get; set; }
+        [DisplayName("商品名稱")]
+        [商品名稱必須包含特定名稱]
         public string ProductName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<bool> Active { get; set; }

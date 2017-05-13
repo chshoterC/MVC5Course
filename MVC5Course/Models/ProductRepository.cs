@@ -34,7 +34,7 @@ namespace MVC5Course.Models
                 all = base.All();
 
             return all.Where(p => p.Active.HasValue && p.Active.Value == Active)
-                .OrderByDescending(p => p.ProductId).Take(10);
+                .OrderByDescending(p => p.ProductId).Take(100);
         }
 
         public IQueryable<Product> GetProduct產品資料表List()

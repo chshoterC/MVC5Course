@@ -11,10 +11,17 @@
         @TempData["CreateProduct_Result"]
     </h2>
 }
-<form  method="get">
+<form method="get">
     <h2>ProductList</h2>
 
     搜尋 @Html.TextBox("q")
+
+
+    <br />
+    庫存
+    @Html.TextBox("stock1", null, htmlAttributes: new { @style = " width:50px;" })
+    ~
+    @Html.TextBox("stock2", null, htmlAttributes: new { @style = " width:50px;" })<br />
     <button>search</button>
 </form>
 <table class="table">
@@ -34,22 +41,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+
+        </tr>
+    }
 
 </table>

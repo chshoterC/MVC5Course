@@ -49,5 +49,17 @@ namespace MVC5Course.Controllers
         {
             return PartialView("SuccessRedirect", "/");
         }
+
+        public ActionResult GetFile()
+        {
+            return File(Server.MapPath("~/Content/fbshare.jpg"), "image/jpeg", "new.jpg");
+        }
+
+        public ActionResult GetJson()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+
+            return Json(db.Product.Take(5), JsonRequestBehavior.AllowGet);
+        }
     }
 }

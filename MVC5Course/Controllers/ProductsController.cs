@@ -28,8 +28,6 @@ namespace MVC5Course.Controllers
         {
             var data = repo.GetProduct所有產品資料(true);
 
-
-
             if (ModelState.IsValid)
             {
                 if (!string.IsNullOrEmpty(ListPDQuery.q))
@@ -37,7 +35,8 @@ namespace MVC5Course.Controllers
                     data = data.Where
                         (p => p.ProductName.Contains(ListPDQuery.q));
                 }
-                data = data.Where(p => p.Stock > ListPDQuery.stock1 && p.Stock < ListPDQuery.stock2);
+                if (ListPDQuery.stock2 != 0)
+                    data = data.Where(p => p.Stock > ListPDQuery.stock1 && p.Stock < ListPDQuery.stock2);
             }
 
             ViewData.Model = data
@@ -48,7 +47,7 @@ namespace MVC5Course.Controllers
                 Price = p.Price,
                 Stock = p.Stock
             })
-                 .Take(10);
+                 .Take(50);
             return View();
         }
 

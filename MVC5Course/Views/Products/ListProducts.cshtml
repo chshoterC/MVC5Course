@@ -20,8 +20,11 @@
     <br />
     庫存
     @Html.TextBox("stock1", null, htmlAttributes: new { @style = " width:50px;" })
+    @Html.ValidationMessage("stock1")
     ~
-    @Html.TextBox("stock2", null, htmlAttributes: new { @style = " width:50px;" })<br />
+    @Html.TextBox("stock2", null, htmlAttributes: new { @style = " width:50px;" })
+    @Html.ValidationMessage("stock1")
+    <br />
     <button>search</button>
 </form>
 <table class="table">

@@ -8,12 +8,14 @@ namespace MVC5Course.Models.ViewModels
 {
     public class ListProductsQuery:IValidatableObject
     {
+     
+
         public string q { get; set; }
         public int stock1 { get; set; }
         public int stock2 { get; set; }
 
 
-        
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if(this.stock1 > this.stock2)

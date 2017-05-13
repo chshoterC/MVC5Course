@@ -14,7 +14,7 @@ namespace MVC5Course.Controllers
 
         public ActionResult Debug()
         {
-            return View();
+            return Content("Hi");
         }
     }
 }

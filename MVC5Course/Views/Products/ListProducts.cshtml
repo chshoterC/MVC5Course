@@ -2,8 +2,6 @@
 
 @{
     ViewBag.Title = "ListProducts";
-
-    
 }
 
 
@@ -13,8 +11,12 @@
         @TempData["CreateProduct_Result"]
     </h2>
 }
-<h2>ProductList</h2>
+<form  method="get">
+    <h2>ProductList</h2>
 
+    搜尋 @Html.TextBox("q")
+    <button>search</button>
+</form>
 <table class="table">
     <tr>
         <th>

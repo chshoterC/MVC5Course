@@ -24,18 +24,30 @@ namespace MVC5Course.Controllers
             return View(data);
         }
 
-        public ActionResult ListProducts()
+        public ActionResult ListProducts(string q)
         {
-            var data = repo.GetProduct所有產品資料(true)
-                .Select(p => new ListProducts()
-                {
-                    ProductId = p.ProductId,
-                    ProductName = p.ProductName,
-                    Price = p.Price,
-                    Stock = p.Stock
-                })
-                 .Take(10);
-            return View(data);
+            var data = repo.GetProduct所有產品資料(true);
+
+
+            if (!string.IsNullOrEmpty(q))
+            {
+                var keyword = q;
+                data = data.Where
+                    (p => p.ProductName.Contains(q));
+            }
+
+
+
+            ViewData.Model = data
+            .Select(p => new ListProducts()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                Price = p.Price,
+                Stock = p.Stock
+            })
+             .Take(10);
+            return View();
         }
 
         // GET: Products/Details/5

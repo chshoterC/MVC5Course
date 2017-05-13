@@ -9,11 +9,8 @@ using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
-    public class EFController : Controller
+    public class EFController : BaseController
     {
-        private FabricsEntities db = new FabricsEntities();
-
-
         public ActionResult Index()
         {
             var all = db.Product.AsQueryable();

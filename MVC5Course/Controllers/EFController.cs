@@ -20,7 +20,7 @@ namespace MVC5Course.Controllers
                 .OrderByDescending(p => p.ProductId)
                 .Take(300);
 
-            return View(data);
+            return View("About2");
         }
 
         public ActionResult CreateProduct()

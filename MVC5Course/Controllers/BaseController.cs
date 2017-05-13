@@ -16,5 +16,10 @@ namespace MVC5Course.Controllers
         {
             return Content("Hi");
         }
+
+        protected override void HandleUnknownAction(string actionName)
+        {
+            //this.RedirectToAction("Index", "Home").ExecuteResult(this.ControllerContext);
+        }
     }
 }

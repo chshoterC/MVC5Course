@@ -2,8 +2,17 @@
 
 @{
     ViewBag.Title = "ListProducts";
+
+    
 }
 
+
+@if (TempData["CreateProduct_Result"] != null)
+{
+    <h2>
+        @TempData["CreateProduct_Result"]
+    </h2>
+}
 <h2>ProductList</h2>
 
 <table class="table">

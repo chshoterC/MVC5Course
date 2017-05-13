@@ -152,6 +152,8 @@ namespace MVC5Course.Controllers
             if (ModelState.IsValid)
             {
                 // TODO: 儲存資料進資料庫
+                TempData["CreateProduct_Result"] = "新增成功";
+
 
                 return RedirectToAction("ListProducts");
             }

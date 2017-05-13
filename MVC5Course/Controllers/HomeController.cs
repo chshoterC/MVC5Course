@@ -31,5 +31,23 @@ namespace MVC5Course.Controllers
         {
             return View();
         }
+
+        public ActionResult PartialAbout()
+        {
+            ViewBag.Message = "<table><tr>ddd</tr></table>";
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("About");
+            }
+            else
+            {
+                return View("About");
+            }
+        }
+
+        public ActionResult SomeAction()
+        {
+            return PartialView("SuccessRedirect", "/");
+        }
     }
 }

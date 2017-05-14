@@ -12,6 +12,7 @@ namespace MVC5Course.Controllers
         // GET: Base
         protected FabricsEntities db = new FabricsEntities();
 
+        [LocalOnly]
         public ActionResult Debug()
         {
             return Content("Hi");

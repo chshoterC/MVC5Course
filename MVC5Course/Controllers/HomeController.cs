@@ -13,9 +13,10 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        [SharedViewBag]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
 
             return View();
         }
@@ -32,9 +33,10 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        [SharedViewBag(MyProperty = "")]
         public ActionResult PartialAbout()
         {
-            ViewBag.Message = "<table><tr>ddd</tr></table>";
+            //ViewBag.Message = "<table><tr>ddd</tr></table>";
             if (Request.IsAjaxRequest())
             {
                 return PartialView("About");

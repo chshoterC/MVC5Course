@@ -1,0 +1,41 @@
+﻿@model int[]
+@{
+    Layout = "";
+}
+
+@foreach (int i in Model)
+{
+    @i
+}
+
+@{
+    var str = " ";
+}
+@foreach (int i in Model)
+{
+    @i@str
+}
+
+
+@foreach (int i in Model)
+{
+    @(i + " ");
+}
+
+
+@foreach (int i in Model)
+{
+    @(i.ToString() + " ");
+}
+
+
+<ul>
+@foreach (int i in Model)
+{
+  <li>@i</li>
+}
+</ul>
+
+
+
+

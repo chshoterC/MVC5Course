@@ -21,17 +21,18 @@ namespace MVC5Course.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if(this.Price > 5 && this.Stock < 5)
+            if (this.Price > 5 && this.Stock < 5)
             {
 
                 yield return new ValidationResult("庫存小於5價錢大於5", new string[] { "Price", "Stock" });
             }
 
-            if(this.Active==false)
+            if (this.Active == false)
             {
                 yield return new ValidationResult("false", new string[] { "Active" });
 
             }
+            yield break;
         }
     }
 

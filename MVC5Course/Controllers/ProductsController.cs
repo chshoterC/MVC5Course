@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.Models.ViewModels;
+using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -79,9 +82,10 @@ namespace MVC5Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 repo.Add(product);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 

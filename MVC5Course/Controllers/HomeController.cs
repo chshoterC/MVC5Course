@@ -18,6 +18,8 @@ namespace MVC5Course.Controllers
         {
             //ViewBag.Message = "Your application description page.";
 
+            throw new Exception();
+
             return View();
         }
 
@@ -62,6 +64,19 @@ namespace MVC5Course.Controllers
             db.Configuration.LazyLoadingEnabled = false;
 
             return Json(db.Product.Take(5), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult VT()
+        {
+            ViewBag.IsEnable = true;
+
+            return View();
+        }
+
+        public ActionResult RazorTest()
+        {
+            ViewData.Model  = new int[] { 1, 2, 3, 4, 5 };
+            return PartialView();
         }
     }
 }

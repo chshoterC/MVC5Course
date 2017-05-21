@@ -47,11 +47,11 @@ namespace MVC5Course.Controllers
         public ActionResult Edit(int id)
         {
             var data = db.Client.Find(id);
-            var ratings = (from p in db.Client
-                           select p.CreditRating)
-                         .Distinct().OrderBy(p => p).ToList();
 
-            ViewBag.CreditRatingFilter = new SelectList(ratings, data.CreditRating);
+
+
+            var items = new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            ViewBag.CreditRating = new SelectList(items);
 
 
             ViewData.Model = data;
@@ -68,7 +68,7 @@ namespace MVC5Course.Controllers
                            select p.CreditRating)
                         .Distinct().OrderBy(p => p).ToList();
 
-            ViewBag.CreditRatingFilter = new SelectList(ratings, Client.CreditRating);
+            ViewBag.CreditRating = new SelectList(ratings, Client.CreditRating);
 
 
             if (TryUpdateModel(Client, includeProperties: new string[] { "ProductName" }))

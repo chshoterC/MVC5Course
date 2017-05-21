@@ -14,6 +14,7 @@ namespace MVC5Course.Models
         [Required]
         public int ClientId { get; set; }
         
+        [Required]
         [StringLength(40, ErrorMessage="欄位長度不得大於 40 個字元")]
         public string FirstName { get; set; }
         
@@ -25,6 +26,8 @@ namespace MVC5Course.Models
         
         [StringLength(1, ErrorMessage="欄位長度不得大於 1 個字元")]
         public string Gender { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public Nullable<double> CreditRating { get; set; }
         
@@ -49,7 +52,9 @@ namespace MVC5Course.Models
         public Nullable<double> Longitude { get; set; }
         public Nullable<double> Latitude { get; set; }
         public string Notes { get; set; }
-    
+
+        
+       
         public virtual Occupation Occupation { get; set; }
         public virtual ICollection<Order> Order { get; set; }
     }

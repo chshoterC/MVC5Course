@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using PagedList;
+
 
 namespace MVC5Course.Controllers
 {
@@ -15,10 +17,15 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients1
-        public ActionResult Index()
+        public ActionResult Index(int? pageNo)
         {
-            var client = db.Client.Include(c => c.Occupation).Take(20);
-            return View(client.ToList());
+            if (pageNo == null)
+            {
+                pageNo = 1;
+            }
+            var client = db.Client.Include(c => c.Occupation).Take(50);
+            ViewData.Model = client.OrderBy(p => p.ClientId).ToPagedList(pageNo.Value, 10);
+            return View();
         }
 
         // GET: Clients1/Details/5

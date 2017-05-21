@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MVC5Course.Controllers
 {
     public class FormController : BaseController
     {
-        public ActionResult Index(double CreditRatingFilter = -1, string LastNameFilter = "")
+        public ActionResult Index(double CreditRatingFilter = -1, string LastNameFilter = "", int? pageNo = 1)
         {
-
             var data = db.Client.AsQueryable();
 
 
@@ -37,12 +37,16 @@ namespace MVC5Course.Controllers
             {
                 if (Session["LastNameFilter"] != null && Session["LastNameFilter"].ToString() != "")
                 {
-                    data = data.Where(p => p.LastName.Contains(LastNameFilter));
-                    LastNameFilter = Session["LastNameFilter"].ToString();
+                    if (LastNameFilter != "")
+                    {
+                        LastNameFilter = Session["LastNameFilter"].ToString();
+                        data = data.Where(p => p.LastName.Contains(LastNameFilter));
+                    }
+
                 }
             }
 
-            ViewData.Model = data.Take(20);
+            ViewData.Model = data.OrderBy(p => p.ClientId).ToPagedList(pageNo.Value, 10);
 
 
             var ratings = (from p in db.Client

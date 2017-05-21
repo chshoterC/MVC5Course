@@ -4,6 +4,13 @@
     ViewBag.Title = "Details";
 }
 
+@{
+    if (IsAjax)
+    {
+        Layout = "";
+    }
+}
+
 <h2>Details</h2>
 
 <div>
@@ -42,7 +49,7 @@
             @Html.DisplayFor(model => model.Gender)
         </dd>
 
- 
+
 
     </dl>
 </div>

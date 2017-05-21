@@ -1,0 +1,14 @@
+﻿@model string
+
+@switch (Model)
+{
+    case "M":
+        @("☝️男")
+        break;
+    case "F":
+        @("👌女")
+        break;
+    default:
+        @("🙅N/A")
+        break;
+}

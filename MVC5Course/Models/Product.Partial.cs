@@ -53,6 +53,7 @@ namespace MVC5Course.Models
 
         public virtual ICollection<OrderLine> OrderLine { get; set; }
 
+        //[DataType(DataType.Date)] //不會改變資料型態，只會改變輸出到VIEW的資料型態
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public object CreateOn { get; set; }
     }

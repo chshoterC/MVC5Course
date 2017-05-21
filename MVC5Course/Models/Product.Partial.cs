@@ -42,7 +42,7 @@ namespace MVC5Course.Models
         public int ProductId { get; set; }
 
         [StringLength(33)]
-        
+
         [商品名稱必須包含特定名稱]
         [DisplayName("商品名稱")]
         public string ProductName { get; set; }
@@ -52,5 +52,8 @@ namespace MVC5Course.Models
         public Nullable<decimal> Stock { get; set; }
 
         public virtual ICollection<OrderLine> OrderLine { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public object CreateOn { get; set; }
     }
 }

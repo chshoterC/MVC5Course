@@ -17,6 +17,12 @@ namespace MVC5Course.Models.ValidationAttributes
 
         public override bool IsValid(object value)
         {
+            if(value==null)
+            {
+                return false;
+            }
+
+
             var str = (string)value;
 
             return str.Contains(str1);

@@ -8,9 +8,6 @@ namespace MVC5Course.Controllers
 {
     public class FormController : BaseController
     {
-
-
-
         public ActionResult Index(double CreditRatingFilter = -1, string LastNameFilter = "")
         {
 
@@ -18,11 +15,32 @@ namespace MVC5Course.Controllers
 
 
             if (CreditRatingFilter > 0)
+            {
+                Session["CreditRatingFilter"] = CreditRatingFilter;
                 data = data.Where(p => p.CreditRating == CreditRatingFilter);
+            }
+            else
+            {
+                if (Session["CreditRatingFilter"] != null && (double)Session["CreditRatingFilter"] > 0)
+                {
+                    data = data.Where(p => p.CreditRating == CreditRatingFilter);
+                    CreditRatingFilter = (double)Session["CreditRatingFilter"];
+                }
+            }
 
             if (!string.IsNullOrEmpty(LastNameFilter))
+            {
+                Session["LastNameFilter"] = LastNameFilter;
                 data = data.Where(p => p.LastName.Contains(LastNameFilter));
-
+            }
+            else
+            {
+                if (Session["LastNameFilter"] != null && Session["LastNameFilter"].ToString() != "")
+                {
+                    data = data.Where(p => p.LastName.Contains(LastNameFilter));
+                    LastNameFilter = Session["LastNameFilter"].ToString();
+                }
+            }
 
             ViewData.Model = data.Take(20);
 
@@ -47,8 +65,6 @@ namespace MVC5Course.Controllers
         public ActionResult Edit(int id)
         {
             var data = db.Client.Find(id);
-
-
 
             var items = new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             ViewBag.CreditRating = new SelectList(items);
